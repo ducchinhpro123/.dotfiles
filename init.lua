@@ -132,8 +132,14 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 50
 
+vim.opt.backup = false
+vim.opt.wrap = false
+vim.opt.swapfile = false
+vim.opt.termguicolors = true
+vim.opt.smartindent = true
+vim.opt.guicursor = ''
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
@@ -965,12 +971,16 @@ require('lazy').setup({
   },
 })
 
--- CONFIGURE COC
--- Some servers have issues with backup files, see #649
-vim.opt.backup = false
-vim.opt.writebackup = false
--- vim.opt.updatetime = 300
-vim.opt.signcolumn = 'yes'
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'java',
+--   callback = function()
+--     vim.bo.shiftwidth = 4
+--     vim.bo.tabstop = 4
+--     vim.bo.expandtab = true
+--   end,
+-- })
+--
+-- CONFIGURE coc
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
