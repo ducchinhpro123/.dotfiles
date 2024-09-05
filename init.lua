@@ -477,6 +477,7 @@ require('lazy').setup({
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+      'nvim-java/nvim-java',
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -677,6 +678,15 @@ require('lazy').setup({
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
+          end,
+          jdtls = function()
+            require('java').setup {
+              -- Your custom jdtls settings goes here
+            }
+
+            require('lspconfig').jdtls.setup {
+              -- Your custom nvim-java configuration goes here
+            }
           end,
         },
       }
@@ -971,16 +981,20 @@ require('lazy').setup({
   },
 })
 
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = 'java',
---   callback = function()
---     vim.bo.shiftwidth = 4
---     vim.bo.tabstop = 4
---     vim.bo.expandtab = true
---   end,
--- })
---
--- CONFIGURE coc
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'java',
+  callback = function()
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.expandtab = true
+  end,
+})
+
+vim.opt.writebackup = false
+
+-- setup copilot chat
+vim.keymap.set('n', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Open copilot chat' })
+vim.keymap.set('n', '<leader>cc', ':CopilotChatClose<CR>', { desc = 'Close copilot chat' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
