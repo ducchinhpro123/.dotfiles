@@ -992,9 +992,19 @@ vim.api.nvim_create_autocmd('FileType', {
 
 vim.opt.writebackup = false
 
--- setup copilot chat
+-- configure for copilot chat
 vim.keymap.set('n', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Open copilot chat' })
 vim.keymap.set('n', '<leader>cc', ':CopilotChatClose<CR>', { desc = 'Close copilot chat' })
+vim.keymap.set('x', '<leader>cf', ':CopilotChatFix<CR>', { desc = 'Copilot chat fix' })
+vim.keymap.set('x', '<leader>ce', ':CopilotChatExplain<CR>', { desc = 'Copilot chat explain' })
+
+-- configure for flutter development
+vim.keymap.set('n', '<leader>Fr', ':FlutterRun<CR>', { desc = 'Run the current project.' })
+vim.keymap.set('n', '<leader>Fl', ':FlutterReload<CR>', { desc = 'Reload the running project.' })
+vim.keymap.set('n', '<leader>Fs', ':FlutterRestart<CR>', { desc = 'Restart the running project.' })
+vim.keymap.set('n', '<leader>Fq', ':FlutterQuit<CR>', { desc = 'Ends a running session.' })
+vim.keymap.set('n', '<leader>Fd', ':FlutterVisualDebug<CR>', { desc = 'Flutter Visual Debug.' })
+--
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
