@@ -139,7 +139,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.smartindent = true
-vim.opt.guicursor = ''
+-- vim.opt.guicursor = ''
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
