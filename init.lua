@@ -139,7 +139,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.smartindent = true
--- vim.opt.guicursor = ''
+vim.opt.guicursor = ''
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
@@ -1005,6 +1005,16 @@ vim.keymap.set('n', '<leader>Fs', ':FlutterRestart<CR>', { desc = 'Restart the r
 vim.keymap.set('n', '<leader>Fq', ':FlutterQuit<CR>', { desc = 'Ends a running session.' })
 vim.keymap.set('n', '<leader>Fd', ':FlutterVisualDebug<CR>', { desc = 'Flutter Visual Debug.' })
 --
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end,
+})
 
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*.js',
+  command = 'set filetype=javascript',
+})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
