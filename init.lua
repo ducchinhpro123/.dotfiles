@@ -137,7 +137,7 @@ vim.opt.updatetime = 50
 vim.opt.backup = false
 vim.opt.wrap = false
 vim.opt.swapfile = false
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 vim.opt.smartindent = true
 vim.opt.guicursor = ''
 -- Decrease mapped sequence wait time
@@ -713,7 +713,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, java = true, js = true }
+        local disable_filetypes = { c = true, cpp = true, java = true, js = true, dart = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
@@ -1014,8 +1014,6 @@ vim.keymap.set('n', '<leader>Fl', ':FlutterReload<CR>', { desc = 'Reload the run
 vim.keymap.set('n', '<leader>Fs', ':FlutterRestart<CR>', { desc = 'Restart the running project.' })
 vim.keymap.set('n', '<leader>Fq', ':FlutterQuit<CR>', { desc = 'Ends a running session.' })
 vim.keymap.set('n', '<leader>Fd', ':FlutterVisualDebug<CR>', { desc = 'Flutter Visual Debug.' })
-
-vim.opt.foldenable = false
 
 -- Update the format-on-save autocommand
 
