@@ -1,4 +1,3 @@
-# kickstart.nvim
 
 > No one is the same. Make it yours.
 
