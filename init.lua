@@ -1003,10 +1003,11 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.opt.writebackup = false
 
 -- configure for copilot chat
-vim.keymap.set('n', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Open copilot chat' })
+vim.keymap.set('n', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Copilot chat open' })
 vim.keymap.set('n', '<leader>cc', ':CopilotChatClose<CR>', { desc = 'Close copilot chat' })
 vim.keymap.set('x', '<leader>cf', ':CopilotChatFix<CR>', { desc = 'Copilot chat fix' })
 vim.keymap.set('x', '<leader>ce', ':CopilotChatExplain<CR>', { desc = 'Copilot chat explain' })
+vim.keymap.set('x', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Copilot chat open' })
 
 -- configure for flutter development
 vim.keymap.set('n', '<leader>Fr', ':FlutterRun<CR>', { desc = 'Run the current project.' })
