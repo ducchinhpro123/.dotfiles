@@ -713,7 +713,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, java = true, js = true, dart = true }
+        local disable_filetypes = { c = true, cpp = true, java = true, js = true, dart = true, rust_analyzer = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
@@ -1015,6 +1015,18 @@ vim.keymap.set('n', '<leader>Fl', ':FlutterReload<CR>', { desc = 'Reload the run
 vim.keymap.set('n', '<leader>Fs', ':FlutterRestart<CR>', { desc = 'Restart the running project.' })
 vim.keymap.set('n', '<leader>Fq', ':FlutterQuit<CR>', { desc = 'Ends a running session.' })
 vim.keymap.set('n', '<leader>Fd', ':FlutterVisualDebug<CR>', { desc = 'Flutter Visual Debug.' })
+
+require('lspconfig').rust_analyzer.setup {}
+
+local cmp = require 'cmp'
+cmp.setup {
+  completion = {
+    autocomplete = false,
+  },
+  mapping = {
+    ['<C-Space>'] = cmp.mapping.complete(),
+  },
+}
 
 -- local lspconfig = require 'lspconfig'
 -- lspconfig['ts_ls'].setup {}
