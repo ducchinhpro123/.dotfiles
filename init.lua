@@ -139,7 +139,8 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.smartindent = true
-vim.opt.guicursor = ''
+
+vim.opt.guicursor = 'n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:block-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
@@ -713,7 +714,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, java = true, js = true, dart = true, rust_analyzer = true }
+        local disable_filetypes = { c = true, cpp = true, java = true, js = true, dart = true, rust_analyzer = true, rust = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
@@ -859,13 +860,14 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'blazkowolf/gruber-darker.nvim',
+    'vim-scripts/twilight256.vim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'gruber-darker'
+      vim.cmd.colorscheme 'twilight256'
+      -- Override any specific highlights that may cause text selection highlighting
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
