@@ -1020,15 +1020,15 @@ vim.keymap.set('n', '<leader>Fd', ':FlutterVisualDebug<CR>', { desc = 'Flutter V
 
 require('lspconfig').rust_analyzer.setup {}
 
-local cmp = require 'cmp'
-cmp.setup {
-  completion = {
-    autocomplete = false,
-  },
-  mapping = {
-    ['<C-Space>'] = cmp.mapping.complete(),
-  },
-}
+-- local cmp = require 'cmp'
+-- cmp.setup {
+--   completion = {
+--     autocomplete = false,
+--   },
+--   mapping = {
+--     ['<C-Space>'] = cmp.mapping.complete(),
+--   },
+-- }
 
 -- local lspconfig = require 'lspconfig'
 -- lspconfig['ts_ls'].setup {}
