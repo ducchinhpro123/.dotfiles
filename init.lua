@@ -140,7 +140,7 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.smartindent = true
 
-vim.opt.guicursor = 'n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:block-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
+vim.opt.guicursor = ''
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
@@ -1020,7 +1020,32 @@ vim.keymap.set('n', '<leader>Fd', ':FlutterVisualDebug<CR>', { desc = 'Flutter V
 
 require('lspconfig').rust_analyzer.setup {}
 
--- local cmp = require 'cmp'
+local cmp = require 'cmp'
+
+-- Variable to track the autocomplete state
+local autocomplete_enabled = false
+
+-- Initial setup with autocomplete disabled
+cmp.setup {
+  completion = {
+    autocomplete = autocomplete_enabled,
+  },
+}
+
+-- Function to toggle autocomplete
+function _G.toggle_autocomplete()
+  autocomplete_enabled = not autocomplete_enabled
+  cmp.setup {
+    completion = {
+      autocomplete = autocomplete_enabled and { cmp.TriggerEvent.TextChanged } or false,
+    },
+  }
+  print('Autocomplete: ' .. (autocomplete_enabled and 'Enabled' or 'Disabled'))
+end
+
+-- Set up keybindings to toggle autocomplete
+vim.api.nvim_set_keymap('n', '<leader>ta', ':lua toggle_autocomplete()<CR>', { noremap = true, silent = true })
+
 -- cmp.setup {
 --   completion = {
 --     autocomplete = false,
