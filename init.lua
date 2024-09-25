@@ -140,7 +140,13 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.smartindent = true
 
-vim.opt.guicursor = ''
+-- vim.opt.guicursor = ''
+
+vim.opt.guicursor = 'n-v-c:block-Cursor/lCursor,i-ci-ve:block-Cursor/lCursor,r-cr:block-Cursor'
+-- Set the cursor color (for GUI-based clients)
+vim.api.nvim_set_hl(0, 'Cursor', { fg = 'white', bg = 'red' })
+vim.api.nvim_set_hl(0, 'lCursor', { fg = 'white', bg = 'blue' }) -- For insert mode or others
+
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
