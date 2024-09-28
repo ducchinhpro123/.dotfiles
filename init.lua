@@ -866,33 +866,33 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    -- 'thimc/gruber-darker.nvim',
-    -- priority = 1000, -- Make sure to load this before all the other start plugins.
-    -- -- opts = {
-    -- --   transparent = true, -- removes the background
-    -- -- },
-    -- init = function()
-    --   vim.g.gruber_darker_transparent = true
-    --   -- Load the colorscheme here.
-    --   -- Like many other themes, this one has different styles, and you could load
-    --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    --   vim.cmd.colorscheme 'gruber-darker'
-    --   -- Override any specific highlights that may cause text selection highlighting
-    --
-    --   -- You can configure highlights by doing something like:
-    --   vim.cmd.hi 'Comment gui=none'
-    -- end,
-
-    'ducchinhpro123/gruber-darker.nvim',
-    config = function()
-      require('gruber-darker').setup {
-        -- OPTIONAL
-        transparent = true, -- removes the background
-        -- underline = false, -- disables underline fonts
-        -- bold = false, -- disables bold fonts
-      }
+    'lazkowolf/gruber-darker.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- opts = {
+    --   transparent = true, -- removes the background
+    -- },
+    init = function()
+      vim.g.gruber_darker_transparent = true
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'gruber-darker'
+      -- Override any specific highlights that may cause text selection highlighting
+
+      -- You can configure highlights by doing something like:
+      vim.cmd.hi 'Comment gui=none'
     end,
+
+    -- 'lazkowolf/gruber-darker.nvim',
+    -- config = function()
+    --   require('gruber-darker').setup {
+    --     -- OPTIONAL
+    --     transparent = true, -- removes the background
+    --     -- underline = false, -- disables underline fonts
+    --     -- bold = false, -- disables bold fonts
+    --   }
+    --   vim.cmd.colorscheme 'gruber-darker'
+    -- end,
   },
 
   -- Highlight todo, notes, etc in comments
