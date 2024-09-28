@@ -70,4 +70,7 @@ return {
     },
     config = true,
   },
+  {
+    'rust-lang/rust.vim',
+  },
 }
