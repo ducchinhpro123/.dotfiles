@@ -73,4 +73,29 @@ return {
   {
     'rust-lang/rust.vim',
   },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup {
+        -- Copilot options
+      }
+    end,
+  },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'canary',
+    dependencies = {
+      { 'zbirenbaum/copilot.lua' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+    build = 'make tiktoken',
+    config = function()
+      require('CopilotChat').setup {
+        debug = true,
+        -- Other options
+      }
+    end,
+  },
 }

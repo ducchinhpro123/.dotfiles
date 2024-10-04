@@ -866,11 +866,11 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'lazkowolf/gruber-darker.nvim',
+    'ducchinhpro123/gruber-darker.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    -- opts = {
-    --   transparent = true, -- removes the background
-    -- },
+    opts = {
+      transparent = true, -- removes the background
+    },
     init = function()
       vim.g.gruber_darker_transparent = true
       -- Load the colorscheme here.
@@ -883,7 +883,7 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
 
-    -- 'lazkowolf/gruber-darker.nvim',
+    -- 'blazkowolf/gruber-darker.nvim',
     -- config = function()
     --   require('gruber-darker').setup {
     --     -- OPTIONAL
@@ -935,33 +935,33 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-  -- { -- Highlight, edit, and navigate code
-  --   'nvim-treesitter/nvim-treesitter',
-  --   build = ':TSUpdate',
-  --   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-  --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-  --   opts = {
-  --     ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust' },
-  --     -- Autoinstall languages that are not installed
-  --     auto_install = true,
-  --     highlight = {
-  --       enable = true,
-  --       -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-  --       --  If you are experiencing weird indenting issues, add the language to
-  --       --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-  --       -- additional_vim_regex_highlighting = { 'ruby' },
-  --       additional_vim_regex_highlighting = false,
-  --     },
-  --     -- indent = { enable = true, disable = { 'ruby' } },
-  --     indent = { enable = true },
-  --   },
-  --   -- There are additional nvim-treesitter modules that you can use to interact
-  --   -- with nvim-treesitter. You should go explore a few and see what interests you:
-  --   --
-  --   --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-  --   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-  --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  -- },
+  { -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    opts = {
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java', 'python' },
+      -- Autoinstall languages that are not installed
+      auto_install = false,
+      highlight = {
+        enable = true,
+        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
+        --  If you are experiencing weird indenting issues, add the language to
+        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
+        -- additional_vim_regex_highlighting = { 'ruby' },
+        additional_vim_regex_highlighting = false,
+      },
+      -- indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = true },
+    },
+    -- There are additional nvim-treesitter modules that you can use to interact
+    -- with nvim-treesitter. You should go explore a few and see what interests you:
+    --
+    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -1028,11 +1028,11 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.opt.writebackup = false
 
 -- configure for copilot chat
--- vim.keymap.set('n', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Copilot chat open' })
--- vim.keymap.set('n', '<leader>cc', ':CopilotChatClose<CR>', { desc = 'Close copilot chat' })
--- vim.keymap.set('x', '<leader>cf', ':CopilotChatFix<CR>', { desc = 'Copilot chat fix' })
--- vim.keymap.set('x', '<leader>ce', ':CopilotChatExplain<CR>', { desc = 'Copilot chat explain' })
--- vim.keymap.set('x', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Copilot chat open' })
+vim.keymap.set('n', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Copilot chat open' })
+vim.keymap.set('n', '<leader>cc', ':CopilotChatClose<CR>', { desc = 'Close copilot chat' })
+vim.keymap.set('x', '<leader>cf', ':CopilotChatFix<CR>', { desc = 'Copilot chat fix' })
+vim.keymap.set('x', '<leader>ce', ':CopilotChatExplain<CR>', { desc = 'Copilot chat explain' })
+vim.keymap.set('x', '<leader>co', ':CopilotChatOpen<CR>', { desc = 'Copilot chat open' })
 
 -- configure for flutter development
 vim.keymap.set('n', '<leader>Fr', ':FlutterRun<CR>', { desc = 'Run the current project.' })
@@ -1069,6 +1069,10 @@ end
 -- Set up keybindings to toggle autocomplete
 vim.api.nvim_set_keymap('n', '<leader>ta', ':lua toggle_autocomplete()<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*',
+  command = 'set formatoptions-=cro',
+})
 -- cmp.setup {
 --   completion = {
 --     autocomplete = false,
