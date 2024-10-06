@@ -643,6 +643,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         ts_ls = {},
+        texlab = {},
         --
         lua_ls = {
           -- cmd = {...},
@@ -948,6 +949,7 @@ require('lazy').setup({
       auto_install = false,
       highlight = {
         enable = true,
+        disable = { 'latex', 'rust' },
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
@@ -1075,6 +1077,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*',
   command = 'set formatoptions-=cro',
 })
+
+-- FOR LATEX
+vim.g.vimtex_syntax_enabled = 1
+vim.g.vimtex_view_general_viewer = 'zathura'
+vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
+vim.g.vimtex_compiler_method = 'latexmk'
+
+-- vim.maplocalleader = ","
 -- cmp.setup {
 --   completion = {
 --     autocomplete = false,
