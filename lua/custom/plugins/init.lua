@@ -71,9 +71,6 @@ return {
     config = true,
   },
   {
-    'rust-lang/rust.vim',
-  },
-  {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
@@ -95,6 +92,14 @@ return {
       require('CopilotChat').setup {
         debug = true,
         -- Other options
+      }
+    end,
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup {
+        '*',
       }
     end,
   },

@@ -720,7 +720,8 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, java = true, js = true, dart = true, rust_analyzer = true, rust = true }
+        local disable_filetypes =
+          { c = true, cpp = true, java = true, js = true, javascript = true, dart = true, rust_analyzer = true, rust = true, python = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
@@ -866,33 +867,24 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'ducchinhpro123/gruber-darker.nvim',
+    'blazkowolf/gruber-darker.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    opts = {
-      transparent = true, -- removes the background
-    },
-    init = function()
-      vim.g.gruber_darker_transparent = true
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'gruber-darker'
-      -- Override any specific highlights that may cause text selection highlighting
+    config = function()
+      vim.opt.background = 'dark'
+      vim.opt.termguicolors = true
 
-      -- You can configure highlights by doing something like:
+      --
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        pattern = '*',
+        callback = function()
+          vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+          vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+        end,
+      })
+
+      vim.cmd.colorscheme 'gruber-darker'
       vim.cmd.hi 'Comment gui=none'
     end,
-
-    -- 'blazkowolf/gruber-darker.nvim',
-    -- config = function()
-    --   require('gruber-darker').setup {
-    --     -- OPTIONAL
-    --     transparent = true, -- removes the background
-    --     -- underline = false, -- disables underline fonts
-    --     -- bold = false, -- disables bold fonts
-    --   }
-    --   vim.cmd.colorscheme 'gruber-darker'
-    -- end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -941,7 +933,22 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java', 'python' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'java',
+        'python',
+        'javascript',
+      },
       -- Autoinstall languages that are not installed
       auto_install = false,
       highlight = {
