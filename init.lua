@@ -867,22 +867,17 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'blazkowolf/gruber-darker.nvim',
+    'ducchinhpro123/gruber_darker.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       vim.opt.background = 'dark'
       vim.opt.termguicolors = true
 
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
       --
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        pattern = '*',
-        callback = function()
-          vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-          vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-        end,
-      })
 
-      vim.cmd.colorscheme 'gruber-darker'
+      vim.cmd.colorscheme 'gruber_darker'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
