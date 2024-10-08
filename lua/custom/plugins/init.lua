@@ -112,4 +112,11 @@ return {
       vim.g.vimtex_view_method = 'zathura'
     end,
   },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = { theme = '16color' },
+    },
+  },
 }

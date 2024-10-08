@@ -868,7 +868,7 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'ducchinhpro123/gruber_darker.nvim',
+    'ducchinhpro123/NeoSolarized.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       vim.opt.background = 'dark'
@@ -878,7 +878,7 @@ require('lazy').setup({
       vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
       --
 
-      vim.cmd.colorscheme 'gruber_darker'
+      vim.cmd.colorscheme 'NeoSolarized'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
