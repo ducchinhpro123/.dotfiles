@@ -116,7 +116,41 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
-      options = { theme = '16color' },
+      options = {
+        -- Set a different theme (you can change this to any lualine-supported theme)
+        theme = 'gruvbox', -- You can also try 'nord', 'dracula', etc.
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        icons_enabled = true, -- Enable icons if using 'nvim-web-devicons'
+      },
+      sections = {
+        -- These are the sections on the left and right of the status line
+        lualine_a = {
+          {
+            'mode',
+            fmt = function(mode)
+              return mode:sub(1, 1)
+            end,
+          }, -- Display only the first character of the mode
+        },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = {
+          { 'filename', path = 1 }, -- Shows full file path
+        },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
+      inactive_sections = {
+        -- This is the configuration for inactive windows
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      extensions = { 'fugitive', 'nvim-tree', 'quickfix' }, -- Load extensions to customize for specific buffers
     },
   },
 }
