@@ -192,6 +192,9 @@ vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { silent = true })
 vim.keymap.set('n', '<C-w>', ':bd<CR>', { silent = true })
 vim.keymap.set('i', '<C-w>', '<Ecs>:w<CR>:bd<CR>', { silent = true })
 
+--Get back to normal mode
+vim.keymap.set('i', 'C-c', '<Esc>', { silent = true })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -868,17 +871,37 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'Tsuzat/NeoSolarized.nvim',
+    'lifepillar/vim-solarized8',
+    branch = 'neovim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       vim.opt.background = 'dark'
       vim.opt.termguicolors = true
 
-      -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-      -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-      --
-
-      vim.cmd.colorscheme 'NeoSolarized'
+      -- require('NeoSolarized').setup {
+      --   style = 'dark', -- "dark" or "light"
+      --   transparent = true, -- true/false; Enable this to disable setting the background color
+      --   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+      --   enable_italics = true, -- Italics for different highlight groups (eg. Statement, Condition, Comment, Include, etc.)
+      --   styles = {
+      --     -- Style to be applied to different syntax groups
+      --     comments = { italic = true },
+      --     keywords = { italic = true },
+      --     functions = { bold = true },
+      --     variables = {},
+      --     string = { italic = true },
+      --     underline = true, -- true/false; for global underline
+      --     undercurl = true, -- true/false; for global undercurl
+      --   },
+      --   -- Add specific highlight groups
+      --   on_highlights = function(highlights, colors)
+      --     -- highlights.Include.fg = colors.red -- Using `red` foreground for Includes
+      --   end,
+      --   -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      --   -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+      --   --
+      -- }
+      vim.cmd.colorscheme 'solarized8_high'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
