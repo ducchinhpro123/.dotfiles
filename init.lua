@@ -902,7 +902,7 @@ require('lazy').setup({
       --   -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
       --   --
       -- }
-      vim.cmd.colorscheme 'solarized8_high'
+      vim.cmd.colorscheme 'solarized8'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
